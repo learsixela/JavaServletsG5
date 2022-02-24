@@ -27,13 +27,15 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
 		HttpSession sesion = request.getSession();
+		RequestDispatcher vista = null;
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
 		//validamos
 		if(email.isEmpty() || password.isEmpty()) {
-			pw.println("<p>Error en el envio de parametros</p>");
+			request.setAttribute("msgError", "Error en los parametros");
+			vista = request.getRequestDispatcher("login.jsp");
 		}else {
 			//obtenemos de sesion
 			Usuario usuario = (Usuario) sesion.getAttribute("usuario");//obteniendo el usuario guardado en el formularioController
@@ -41,13 +43,16 @@ public class LoginController extends HttpServlet {
 			
 			//comparamos
 			if(email.equals(correo) && password.equals(usuario.getPassword())) {
-				RequestDispatcher vista = request.getRequestDispatcher("home.jsp");
-				vista.forward(request, response);
+				
+				request.setAttribute("usuario", usuario);//para traspaso a home.jsp
+				vista = request.getRequestDispatcher("home.jsp");
+				
 			}else {
-				pw.println("<p>parametros distintos</p>");
+				request.setAttribute("msgError", "parametros distintos");
+				vista = request.getRequestDispatcher("login.jsp");
 			}
-			
 		}
+		vista.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
