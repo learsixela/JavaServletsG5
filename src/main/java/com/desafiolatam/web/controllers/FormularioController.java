@@ -31,7 +31,7 @@ public class FormularioController extends HttpServlet {
 		
 		//validar informacion
 		if(nombre.equals("") || apellido.equals("") || correo.equals("") || password.equals("")|| genero == null) {
-			pw.println("<p>Error en el envio de parametros</p>");
+			pw.println("<p>Error en el envio de parametros</p>");//registro.jsp
 		}else {
 			Usuario usuario = new Usuario(nombre,apellido,correo,password,Integer.parseInt(genero));
 			//TODO almacenar en base datos

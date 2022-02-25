@@ -39,6 +39,7 @@
 
 			<!--botones-->
 			<input type="submit" class="btn btn-primary" value="Enviar">
+			<a href="login" class="btn btn-success" >Logearse</a>
 		</form>
 	</div>
 	<script
