@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="/Volumes/DD/Java/workspace/zProyectoPrueba/src/main/webapp/WEB-INF/lib/jstl-impl.jar"/>
 	<classpathentry kind="lib" path="/Volumes/DD/Java/workspace/zProyectoPrueba/src/main/webapp/WEB-INF/lib/jstl-standard.jar"/>
 	<classpathentry kind="lib" path="/Volumes/DD/Java/workspace/zProyectoPrueba/src/main/webapp/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="/Volumes/DD/Java/workspace/zProyectoPrueba/src/main/webapp/WEB-INF/lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

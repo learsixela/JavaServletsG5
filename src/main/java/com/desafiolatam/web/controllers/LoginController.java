@@ -2,6 +2,7 @@ package com.desafiolatam.web.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.desafiolatam.web.DAO.UsuarioDAOImpl;
 import com.desafiolatam.web.models.Usuario;
 
 @WebServlet("/login")
@@ -28,6 +30,8 @@ public class LoginController extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		HttpSession sesion = request.getSession();
 		RequestDispatcher vista = null;
+		
+		UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -41,7 +45,12 @@ public class LoginController extends HttpServlet {
 			Usuario usuario = (Usuario) sesion.getAttribute("usuario");// obteniendo el usuario guardado en el
 																		// formularioController
 			String correo = (String) sesion.getAttribute("email");
+			
+			Usuario usuarioDB = usuarioDAOImpl.obtenerUsuario(email);
 
+			//validacion si usuarioDB no es null
+			
+			
 			// comparamos
 			if (email.equals(correo) && password.equals(usuario.getPassword())) {
 				

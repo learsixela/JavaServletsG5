@@ -23,7 +23,7 @@ public class AutosController extends HttpServlet {
 		Auto auto2 = new Auto("Toyota",2.0f,"Azul",240f);
 		Auto auto3 = new Auto("Chevrolet",2.4f,"Blanco",300f);
 		Auto auto4 = new Auto("BMW",3.0f,"Verde",360f);
-		
+		 
 		//agregar Autos a la lista
 		autos.add(auto1);
 		autos.add(auto2);

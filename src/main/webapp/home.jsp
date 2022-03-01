@@ -48,7 +48,7 @@
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
-  }
+  }boleta.electronica.token
   .navbar-nav  li a:hover {
     color: #1abc9c !important;
   }
@@ -75,7 +75,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/zProyectoPrueba/">HOME</a></li>
         <li><a href="registro">Registro</a></li>
-        <li><a href="login">Login</a></li>
+        <li><a href="showLogin">Login</a></li>
         <li><a href="autos">AUTOS</a></li>
         <li><a href="recuperarCookie">COOKIE</a></li>
       </ul>

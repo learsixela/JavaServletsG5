@@ -17,29 +17,41 @@
 </head>
 
 <body>
+
 	<div class="container">
+		<c:if test="${msgError != null}">
+			<div class="alert alert-danger" role="alert">
+				<c:out value="${msg}"></c:out>
+			</div>
+		</c:if>
+
+		<br>
 		<form action="formulario" method="post">
-			<label class="form-label" for="nombre">Nombre:</label> 
-			<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresar nombre"><br> 
-			<label for="apellido">Apellido:</label> 
-			<input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingresar apellido">
-			<br> 
-			<label class="form-label" for="correo">Correo:</label> 
-			<input type="email" class="form-control" id="correo" name="correo" placeholder="Ingresar correo"><br> 
-			<label class="form-label" for="password">Password:</label> 
-			<input type="password" class="form-control" id="password" name="password" placeholder="Ingresar password">
-			<br>
+			<label class="form-label" for="nombre">Nombre:</label> <input
+				type="text" class="form-control" id="nombre" name="nombre"
+				placeholder="Ingresar nombre"><br> <label
+				for="apellido">Apellido:</label> <input type="text"
+				class="form-control" id="apellido" name="apellido"
+				placeholder="Ingresar apellido"> <br> <label
+				class="form-label" for="correo">Correo:</label> <input type="email"
+				class="form-control" id="correo" name="correo"
+				placeholder="Ingresar correo"><br> <label
+				class="form-label" for="password">Password:</label> <input
+				type="password" class="form-control" id="password" name="password"
+				placeholder="Ingresar password"> <br>
 			<!-- input radio -->
-			<label class="form-check-label" for="femenino">Femenino</label> 
-			<input type="radio" class="form-check-input" id="femenino" name="genero" value="1"> <br> 
-			<input type="radio" class="form-check-input" id="masculino" name="genero" value="2"> 
-			<label class="form-check-label" for="masculino">Masculino</label> <br> 
-			<input type="radio" class="form-check-input"  id="nose" name="genero" value="3"> 
-			<label class="form-check-label" for="nose">No Se</label> <br>
+			<label class="form-check-label" for="femenino">Femenino</label> <input
+				type="radio" class="form-check-input" id="femenino" name="genero"
+				value="1"> <br> <input type="radio"
+				class="form-check-input" id="masculino" name="genero" value="2">
+			<label class="form-check-label" for="masculino">Masculino</label> <br>
+			<input type="radio" class="form-check-input" id="nose" name="genero"
+				value="3"> <label class="form-check-label" for="nose">No
+				Se</label> <br>
 
 			<!--botones-->
 			<input type="submit" class="btn btn-primary" value="Enviar">
-			<a href="login" class="btn btn-success" >Logearse</a>
+			<a href="showLogin" class="btn btn-success">Logearse</a>
 		</form>
 	</div>
 	<script

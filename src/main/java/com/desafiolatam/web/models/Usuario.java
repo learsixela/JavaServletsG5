@@ -2,6 +2,7 @@ package com.desafiolatam.web.models;
 
 public class Usuario {
 
+	private Integer id;
 	private String nombre;
 	private String apellido;
 	private String correo;
@@ -12,7 +13,7 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(String nombre, String apellido, String correo, String password, int genero) {
+	public Usuario( String nombre, String apellido, String correo, String password, int genero) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -21,6 +22,12 @@ public class Usuario {
 		this.genero = genero;
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -51,11 +58,11 @@ public class Usuario {
 	public void setGenero(int genero) {
 		this.genero = genero;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", password=" + password
-				+ ", genero=" + genero + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo
+				+ ", password=" + password + ", genero=" + genero + "]";
 	}
 	
 	
