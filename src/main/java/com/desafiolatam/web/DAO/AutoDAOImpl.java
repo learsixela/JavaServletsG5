@@ -80,4 +80,26 @@ public class AutoDAOImpl implements AutoDAO {
 		return auto;
 	}
 
+	@Override
+	public void eliminarAuto(Integer id) {
+		int resultado = 0;
+		String query = "DELETE FROM AUTOS WHERE ID = '"+id+"'";
+		
+		try {
+			conexion = conexionBD.datos();
+			stmt = conexion.createStatement();
+			resultado = stmt.executeUpdate(query);
+
+			if (resultado == 1) {
+				System.out.println("eliminacion de auto");
+			} else {
+				System.out.println("Error al eliminar auto");
+			}
+
+			
+		} catch (Exception e) {
+			System.out.println("Error al eliminar auto " + e);
+		}
+	}
+
 }

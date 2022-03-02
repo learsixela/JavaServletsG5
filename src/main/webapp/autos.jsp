@@ -100,12 +100,15 @@
 			<tbody>
 				<c:forEach var="auto" items="${listaAutos}">
 					<tr>
-						<th scope="row">1</th>
+						<th scope="row"><c:out value="${auto.id}"></c:out></th>
 						<td><c:out value="${auto.marca}"></c:out></td>
 						<td><c:out value="${auto.motor}"></c:out></td>
 						<td><c:out value="${auto.velocidad}"></c:out></td>
 						<td><c:out value="${auto.color}"></c:out></td>
-						<td><a href="#" class="btn btn-warning">Editar</a> <a href="#" class="btn btn-danger">Eliminar</a></td>
+						<td>
+							<a href="administrarAutos?action=showAuto&id=<c:out value="${auto.id}"></c:out>" class="btn btn-warning">Editar</a> 
+							<a href="administrarAutos?action=eliminar&id=<c:out value="${auto.id}"></c:out>" class="btn btn-danger">Eliminar</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
