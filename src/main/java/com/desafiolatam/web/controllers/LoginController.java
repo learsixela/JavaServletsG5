@@ -42,42 +42,53 @@ public class LoginController extends HttpServlet {
 			vista = request.getRequestDispatcher("login.jsp");
 		} else {
 			// obtenemos de sesion
-			Usuario usuario = (Usuario) sesion.getAttribute("usuario");// obteniendo el usuario guardado en el
-																		// formularioController
-			String correo = (String) sesion.getAttribute("email");
+			/*Usuario usuario = (Usuario) sesion.getAttribute("usuario");// obteniendo el usuario guardado en el												// formularioController
+			String correo = (String) sesion.getAttribute("email");*/
 			
 			Usuario usuarioDB = usuarioDAOImpl.obtenerUsuario(email);
-
+			
 			//validacion si usuarioDB no es null
+			if(usuarioDB != null) {
+				// comparamos
+				if (password.equals(usuarioDB.getPassword())) {
+					
+					// COOKIES
+					Cookie cookie = new Cookie(usuarioDB.getNombre(), usuarioDB.getCorreo());
+					cookie.setMaxAge(9000);
+					cookie.setComment("Cookie guardada con propositos educativos");
+					response.addCookie(cookie);
+
+					// ver el contenido de la cookie
+					/*
+					 * pw.println("<html><body>");
+					 * pw.println("<h2><i>Cookie guardada correctamente:</i></h2><br>");
+					 * pw.println("Valor de la cookie: <strong>"+ cookie.getValue()+ "</strong>");
+					 * pw.println("<br>"); pw.println("Tiempo de la duración de la cookie: <strong>"
+					 * + cookie.getMaxAge()+"</strong>"); pw.println("<br>");
+					 * pw.println("Comentario: <strong>" + cookie.getComment() + "</strong>");
+					 * pw.println("</body></html>");
+					 */
+					
+					//SESION
+					//guardar en session
+					sesion.setAttribute("usuario", usuarioDB);
+
+					// para traspaso a home.jsp
+					request.setAttribute("usuario", usuarioDB);
+					
+					vista = request.getRequestDispatcher("home.jsp");
+
+				} else {
+					request.setAttribute("msgError", "parametros distintos");
+					vista = request.getRequestDispatcher("login.jsp");
+				}
 			
-			
-			// comparamos
-			if (email.equals(correo) && password.equals(usuario.getPassword())) {
-				
-				// COOKIES
-				Cookie cookie = new Cookie(usuario.getNombre(), usuario.getCorreo());
-				cookie.setMaxAge(9000);
-				cookie.setComment("Cookie guardada con propositos educativos");
-				response.addCookie(cookie);
-
-				// ver el contenido de la cookie
-				/*
-				 * pw.println("<html><body>");
-				 * pw.println("<h2><i>Cookie guardada correctamente:</i></h2><br>");
-				 * pw.println("Valor de la cookie: <strong>"+ cookie.getValue()+ "</strong>");
-				 * pw.println("<br>"); pw.println("Tiempo de la duración de la cookie: <strong>"
-				 * + cookie.getMaxAge()+"</strong>"); pw.println("<br>");
-				 * pw.println("Comentario: <strong>" + cookie.getComment() + "</strong>");
-				 * pw.println("</body></html>");
-				 */
-
-				request.setAttribute("usuario", usuario);// para traspaso a home.jsp
-				vista = request.getRequestDispatcher("home.jsp");
-
-			} else {
-				request.setAttribute("msgError", "parametros distintos");
-				vista = request.getRequestDispatcher("login.jsp");
+			}else {
+				request.setAttribute("msgError", "Usuario no registrado");
+				vista = request.getRequestDispatcher("registro.jsp");
 			}
+			
+			
 		}
 		vista.forward(request, response);
 	}

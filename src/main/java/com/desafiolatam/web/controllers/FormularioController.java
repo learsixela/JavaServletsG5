@@ -38,22 +38,24 @@ public class FormularioController extends HttpServlet {
 			
 			//TODO almacenar en base datos
 			UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
-			int resultadoInsert = usuarioDAOImpl.crearUsuario(usuario);
 			
-			if (resultadoInsert == 1) {
-				System.out.println("Insercion correcta de usuario");
-				//guardar en session
-				/*sesion.setAttribute("usuario", usuario);
-				sesion.setAttribute("email", correo);*/
+			Usuario usuarioDB = usuarioDAOImpl.obtenerUsuario(correo);
+			if (usuarioDB==null) {//NO EXISTE EL USUARIO CON ESE EMAIL
+			
+				int resultadoInsert = usuarioDAOImpl.crearUsuario(usuario);
 				
-				RequestDispatcher vista = request.getRequestDispatcher("login.jsp");
-				vista.forward(request, response);//redireccionamiento
-			} else {
-				System.out.println("Error al insertar usuario");
-				request.setAttribute("msgError", "Error al insertar usuario");
-				
-				RequestDispatcher vista = request.getRequestDispatcher("registro.jsp");
-				vista.forward(request, response);//redireccionamiento
+				if (resultadoInsert == 1) {
+					System.out.println("Insercion correcta de usuario");
+					
+					RequestDispatcher vista = request.getRequestDispatcher("login.jsp");
+					vista.forward(request, response);//redireccionamiento
+				} else {
+					System.out.println("Error al insertar usuario");
+					request.setAttribute("msgError", "Error al insertar usuario");
+					
+					RequestDispatcher vista = request.getRequestDispatcher("registro.jsp");
+					vista.forward(request, response);//redireccionamiento
+				}
 			}
 			
 		}

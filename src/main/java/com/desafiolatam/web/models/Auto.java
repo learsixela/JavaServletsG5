@@ -2,6 +2,7 @@ package com.desafiolatam.web.models;
 
 public class Auto {
 	// atributos
+	private Integer id;
 	private String marca;
 	private Float motor;
 	private String color;
@@ -15,7 +16,7 @@ public class Auto {
 		this.color = color;
 		this.velocidad = velocidad;
 	}
-
+	
 	public Auto() {
 		super();
 	}
@@ -23,6 +24,14 @@ public class Auto {
 	// getters&Setters
 	public float getVelocidad() {
 		return velocidad;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setVelocidad(float velocidad) {
